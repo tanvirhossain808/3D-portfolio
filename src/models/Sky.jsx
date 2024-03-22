@@ -6,7 +6,6 @@ import skyScene from "../assets/3d/sky.glb"
 
 const Sky = () => {
     const sky = useGLTF(skyScene)
-    console.log(sky);
     return (
         <mesh >
             <primitive object={sky.scene} />
