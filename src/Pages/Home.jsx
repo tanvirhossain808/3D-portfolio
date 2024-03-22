@@ -1,7 +1,11 @@
+/* eslint-disable react/no-unknown-property */
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Loader from "../components/Loader";
 import { Island } from "../models/Island";
+import Sky from "../models/Sky";
+import Bird from "../models/Bird";
+import Plane from "../models/Plane";
 
 const Home = () => {
     const adjustIslandFormScreenSize = () => {
@@ -34,11 +38,15 @@ const Home = () => {
                 <Suspense fallback={<Loader />}>
                     {/* <directionalLight /> */}
                     <ambientLight />
+                    <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" />
+                    <Sky />
+                    <Bird />
                     <Island position={islandPostion}
 
                         scale={islandScale}
                         rotation={islandRotation}
                     />
+                    <Plane />
                 </Suspense>
 
 
