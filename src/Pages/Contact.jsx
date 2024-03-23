@@ -4,6 +4,8 @@ import emailjs from '@emailjs/browser';
 import { Canvas } from "@react-three/fiber";
 import { Fox } from "../models/Fox";
 import Loader from "../components/Loader";
+import useAlert from "../hooks/useAlert";
+import Alert from "../components/Alert";
 
 const Contact = () => {
     const [currentAnimation, setCurrentAnimation] = useState("idle")
@@ -15,6 +17,7 @@ const Contact = () => {
             message: ""
         }
     )
+    const { alert, showAlert, hideAlert } = useAlert()
     const [isLoading, setIsLoading] = useState(false)
     const handleChange = (e) => {
         setForm({
@@ -46,25 +49,34 @@ const Contact = () => {
                 setForm({
                     name: "", email: "", message: ""
                 })
+                hideAlert()
             }, 3000)
-            //Todo:show success message
+            showAlert({
+                show: true,
+                text: "Message sent successfully",
+                type: "success"
+            })
             //todo:hide and alert
         }).catch((error) => {
             setIsLoading(false)
             setCurrentAnimation("idle")
             console.log(error);
-            //todo:show error message
+            showAlert({
+                show: true,
+                text: "I didn't receive your message",
+                type: "danger"
+            })
         })
 
     }
 
     return (
         <section className="relative flex lg:flex-row flex-col max-container">
+            {alert.show && <Alert  {...alert} />}
             <div className="flex-1 min-w-[50%] flex flex-col">
                 <h1 className="head-text">Get in Touch</h1>
                 <form className="w-full flex flex-col gap-7 mt-14"
                     onSubmit={handleSubmit}
-
 
                 >
                     <label className="text-black-500 font-semibold">
