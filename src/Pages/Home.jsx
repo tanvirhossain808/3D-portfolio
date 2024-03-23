@@ -6,6 +6,7 @@ import { Island } from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
+import HomeInfo from "./HomeInfo";
 
 const Home = () => {
     const [isRotating, setIsRotating] = useState(false)
@@ -42,11 +43,11 @@ const Home = () => {
     const [planeScale, planePosition] = adjustPlanecreenSize()
     return (
         <section className="w-full h-screen relative">
-            {/*     <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-                POPUP
+            <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+                {currentStage && <HomeInfo currentStage={currentStage} />}
 
 
-            </div> */}
+            </div>
             <Canvas className={`w-full h-screen bg-transparent ${isRotating ? "cursor-grabbing" : "cursor-grab"}`}
                 camera={{
                     near: 0.1, far: 1000
