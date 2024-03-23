@@ -17,7 +17,7 @@ import { a } from "@react-spring/three"
 
 import islandScreen from '../assets/3d/island.glb';
 
-export function Island({ isRotating, setIsRotating, ...props }) {
+export function Island({ isRotating, setIsRotating, setCurrentStage, ...props }) {
     const islandRef = useRef(null)
     const { gl, viewport } = useThree()
     const lastX = useRef(0)
@@ -37,7 +37,6 @@ export function Island({ isRotating, setIsRotating, ...props }) {
         e.stopPropagation()
         e.preventDefault()
         setIsRotating(false)
-        console.log(isRotating);
     }
     const handlePointerMove = (e) => {
         e.stopPropagation()
@@ -61,21 +60,24 @@ export function Island({ isRotating, setIsRotating, ...props }) {
         if (e.key === "ArrowLeft") {
             if (!isRotating) setIsRotating(true)
             islandRef.current.rotation.y += 0.01 * Math.PI
+            rotationSpeed.current = 0.007
         }
         else if (e.key === "ArrowRight") {
             if (!isRotating) setIsRotating(true)
             islandRef.current.rotation.y -= 0.01 * Math.PI
+            rotationSpeed.current = -0.007
         }
     }
 
     const handleKeyUp = e => {
-        if (e.key === "ArrowLeft" || e.key === "arrowRight") setIsRotating(false)
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") setIsRotating(false)
     }
     useFrame(() => {
         if (!isRotating) {
             rotationSpeed.current *= dampingFactor
             if (Math.abs(rotationSpeed.current) < 0.001) {
                 rotationSpeed.current = 0
+
             }
             islandRef.current.rotation.y += rotationSpeed.current
         }
@@ -83,26 +85,26 @@ export function Island({ isRotating, setIsRotating, ...props }) {
             const rotation = islandRef.current.rotation.y
 
 
-            // const normalizedRotation =
-            //     ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+            const normalizedRotation =
+                ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-            // // Set the current stage based on the island's orientation
-            // switch (true) {
-            //     case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-            //         setCurrentStage(4);
-            //         break;
-            //     case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-            //         setCurrentStage(3);
-            //         break;
-            //     case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-            //         setCurrentStage(2);
-            //         break;
-            //     case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-            //         setCurrentStage(1);
-            //         break;
-            //     default:
-            //         setCurrentStage(null);
-            // }
+            // Set the current stage based on the island's orientation
+            switch (true) {
+                case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+                    setCurrentStage(4);
+                    break;
+                case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+                    setCurrentStage(3);
+                    break;
+                case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+                    setCurrentStage(2);
+                    break;
+                case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+                    setCurrentStage(1);
+                    break;
+                default:
+                    setCurrentStage(null);
+            }
         }
 
 
