@@ -72,6 +72,26 @@ export function Island({ isRotating, setIsRotating, setCurrentStage, ...props })
     const handleKeyUp = e => {
         if (e.key === "ArrowLeft" || e.key === "ArrowRight") setIsRotating(false)
     }
+    const handleTouchEnd = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setIsRotating(false);
+    }
+
+    const handleTouchMove = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (isRotating) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const delta = (clientX - lastX.current) / viewport.width;
+
+            islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+            lastX.current = clientX;
+            rotationSpeed.current = delta * 0.01 * Math.PI;
+        }
+    }
+
     useFrame(() => {
         if (!isRotating) {
             rotationSpeed.current *= dampingFactor
@@ -114,12 +134,16 @@ export function Island({ isRotating, setIsRotating, setCurrentStage, ...props })
         canvas.addEventListener("pointerdown", handlePointerDown)
         canvas.addEventListener("pointermove", handlePointerMove)
         canvas.addEventListener("pointerup", handlePointerUp)
+        canvas.addEventListener("touchend", handleTouchEnd)
+        canvas.addEventListener("touchmove", handleTouchMove)
         document.addEventListener("keydown", handleKeyDown)
         document.addEventListener("keyup", handleKeyUp)
         return () => {
             canvas.removeEventListener("pointerdown", handlePointerDown)
             canvas.removeEventListener("pointermove", handlePointerMove)
             canvas.removeEventListener("pointerup", handlePointerUp)
+            canvas.removeEventListener("touchend", handleTouchEnd)
+            canvas.removeEventListener("touchmove", handleTouchMove)
             document.removeEventListener("keydown", handleKeyDown)
             document.removeEventListener("keyup", handleKeyUp)
         }
