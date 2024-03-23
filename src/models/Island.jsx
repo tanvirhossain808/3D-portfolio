@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 /*
@@ -114,11 +115,11 @@ export function Island({ isRotating, setIsRotating, ...props }) {
         document.addEventListener("keydown", handleKeyDown)
         document.addEventListener("keyup", handleKeyUp)
         return () => {
-            canvas.addEventListener("pointerdown", handlePointerDown)
-            canvas.addEventListener("pointermove", handlePointerMove)
-            canvas.addEventListener("pointerup", handlePointerUp)
-            document.addEventListener("keydown", handleKeyDown)
-            document.addEventListener("keyup", handleKeyUp)
+            canvas.removeEventListener("pointerdown", handlePointerDown)
+            canvas.removeEventListener("pointermove", handlePointerMove)
+            canvas.removeEventListener("pointerup", handlePointerUp)
+            document.removeEventListener("keydown", handleKeyDown)
+            document.removeEventListener("keyup", handleKeyUp)
         }
 
 
