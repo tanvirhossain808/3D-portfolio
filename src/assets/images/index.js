@@ -6,5 +6,16 @@ import tesla from "./tesla.png"
 import logo from "./logo.svg"
 import ethicalden from "./ethicalden.png"
 import emopract from "../icons/emopract.webp"
+import gmail from "./gmail.png"
 
-export { hero, meta, shopify, starbucks, tesla, logo, ethicalden, emopract }
+export {
+    hero,
+    meta,
+    shopify,
+    starbucks,
+    tesla,
+    logo,
+    ethicalden,
+    emopract,
+    gmail,
+}

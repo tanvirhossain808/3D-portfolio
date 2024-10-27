@@ -6,6 +6,7 @@ import {
 } from "react-vertical-timeline-component"
 import "react-vertical-timeline-component/style.min.css"
 import CTA from "../components/CTA"
+import Contact from "../components/Contact"
 
 const About = () => {
     return (
@@ -52,7 +53,9 @@ const About = () => {
                 <h3 className="subhead-text">Work Experiences</h3>
                 <div className="mt-5 flex flex-col gap-3 text-slate-500">
                     <p>
-                        Currently i am working as a volunteer in social
+                        Currently i am working as Frontend at Ethicalden where i
+                        have to built project along with the member and make web
+                        app fast. On the other hand i am also volunteer at a
                         organization teaching about programming ,leveling up my
                         skills and teaming up with smart people .Here&apos;s the
                         rundown:
@@ -105,6 +108,7 @@ const About = () => {
                                 </ul>
                             </VerticalTimelineElement>
                         ))}
+                        <Contact />
                     </VerticalTimeline>
                 </div>
             </div>

@@ -1,8 +1,6 @@
-import { ethicalden, emopract } from "../assets/images"
+import { ethicalden, emopract, gmail } from "../assets/images"
 import {
-    contact,
     css,
-    estate,
     express,
     git,
     github,
@@ -16,7 +14,6 @@ import {
     nodejs,
     react,
     redux,
-    summiz,
     tailwindcss,
     typescript,
     tomato,
@@ -129,19 +126,19 @@ export const experiences = [
 
 export const socialLinks = [
     {
-        name: "Contact",
-        iconUrl: contact,
-        link: "/contact",
+        name: "Gmail",
+        iconUrl: gmail,
+        link: "mailto:example@gmail.com",
     },
     {
         name: "GitHub",
         iconUrl: github,
-        link: "https://github.com/YourGitHubUsername",
+        link: "https://github.com/tanvirhossain808",
     },
     {
         name: "LinkedIn",
         iconUrl: linkedin,
-        link: "https://www.linkedin.com/in/YourLinkedInUsername",
+        link: "https://www.linkedin.com/in/tanvirhossain808",
     },
 ]
 
