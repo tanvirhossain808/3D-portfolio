@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { arrow } from "../assets/icons";
+import { Link } from "react-router-dom"
+import { arrow } from "../assets/icons"
 
 /* eslint-disable react/prop-types */
 const InfoBox = ({ text, link, btnText }) => (
@@ -12,26 +12,48 @@ const InfoBox = ({ text, link, btnText }) => (
     </div>
 )
 
-
 const renderContent = {
-    1: (<h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">Hi, I am <span className="font-semibold
-    ">Tanvir </span>👋
-        <br />
-        A 3D Web Developer from Bangladesh
-
-    </h1>),
-    2: (<InfoBox text={"Working on many projects to increase many skills along the way"} link={"/about"}
-        btnText="Learn more"
-    />),
-    3: (<InfoBox text={"Build multiple projects to success ove the year.Curios about the impact?"} link={"/projects"}
-        btnText="Visit my portfolio"
-    />),
-    4: (<InfoBox text={"Need a project done or looking for a dev? I'm just few keystrokes away"} link={"/contact"}
-        btnText="Let's talk"
-    />)
+    1: (
+        <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
+            Hi, I am{" "}
+            <span
+                className="font-semibold
+    "
+            >
+                Tanvir{" "}
+            </span>
+            👋
+            <br />A Full stack Web Developer from Bangladesh
+        </h1>
+    ),
+    2: (
+        <InfoBox
+            text={
+                "Working on many projects to increase many skills along the way"
+            }
+            link={"/about"}
+            btnText="Learn more"
+        />
+    ),
+    3: (
+        <InfoBox
+            text={
+                "Build multiple projects to success ove the year.Curios about the impact?"
+            }
+            link={"/projects"}
+            btnText="Visit my portfolio"
+        />
+    ),
+    4: (
+        <InfoBox
+            text={
+                "Need a project done or looking for a dev? I'm just few keystrokes away"
+            }
+            link={"/contact"}
+            btnText="Let's talk"
+        />
+    ),
 }
-
-
 
 const HomeInfo = ({ currentStage }) => {
     // return (
@@ -41,6 +63,6 @@ const HomeInfo = ({ currentStage }) => {
     // );
 
     return renderContent[currentStage] || null
-};
+}
 
-export default HomeInfo;
+export default HomeInfo
